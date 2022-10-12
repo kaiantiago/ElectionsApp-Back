@@ -1,0 +1,22 @@
+{
+  "name": "electionsapp-back",
+  "version": "1.0.0",
+  "description": "backend de uma aplicação mobile que simula um sistema de eleições",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaiantiago/ElectionsApp-Back.git"
+  },
+  "keywords": [
+    "elections"
+  ],
+  "author": "Kaian Lima, Arthur Augusto, Hallef Carvalho, Júlia Muniz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaiantiago/ElectionsApp-Back/issues"
+  },
+  "homepage": "https://github.com/kaiantiago/ElectionsApp-Back#readme"
+}
