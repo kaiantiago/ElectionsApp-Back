@@ -5,7 +5,9 @@ const Path = require('path');
 const caminho = Path.join(__dirname, '../config/.env')
 dotenv.config({path: Path.join(__dirname, '../config/.env')})
 
-mongoose.connect(process.env.CONNECTIONSTRING||"localhost:27017/local");
+//mongoose.connect(process.env.CONNECTIONSTRING||"localhost:27017/local");
+const url = 'mongodb://localhost:27017/local';
+mongoose.connect(url, { useNewUrlParser: true }); 
 mongoose.Promise = global.Promise;
 
 //Prepara o module.exports para envio dos dados ao MongoDB
