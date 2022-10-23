@@ -21,13 +21,13 @@ const candidatoSchema = new mongoose.Schema({
         type: String,
         //unique: true,
         require: true,
-        lowercase: true,
+        uppercase: true,
     },
     estado: {
         type: String,
         //unique: true,
-        require: true,
-        lowercase: true,
+        //require: true,
+        uppercase: true,
     },
     votos: {
         type: Number,

@@ -38,8 +38,8 @@ router.post('/registrar', async (req, res) => {
     
     try{
     
-        const { nome} = req.body;
-
+        const { nome } = req.body;
+        console.log(nome);
         if(await Partido.findOne({ nome })){
             return res.status(400).send({error: 'Item already exists'});
         }
@@ -103,7 +103,7 @@ router.delete('/:partidoId', async (req, res) => {
     try{
        
         await Partido.findByIdAndRemove(req.params.partidoId)
-        await EnderecoPartido.findOneAndRemove({entregador: req.params.partidoId});
+       // await EnderecoPartido.findOneAndRemove({entregador: req.params.partidoId});
         return res.send({log: 'Deleted Succesfully'})
  
      } catch (err) {

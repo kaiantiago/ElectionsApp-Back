@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const partidoSchema = new mongoose.Schema({
     nome: {
         type: String,
-        //required: true,
+        required: true,
     },
     CreatedAt: {
         type: Date,
@@ -12,14 +12,14 @@ const partidoSchema = new mongoose.Schema({
     },
 });
 
-partidoSchema.pre('save', async function(next) {
+/*partidoSchema.pre('save', async function(next) {
     if(this.senha != undefined) {
         const hash = await bcrypt.hash(this.senha, 10);
         this.senha = hash;
     }
     next();
     
-});
+});*/
 
 const Partido = mongoose.model('Partido', partidoSchema);
 

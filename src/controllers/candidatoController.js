@@ -1,6 +1,6 @@
 const express = require('express');
 
-const candidato = require('../models/candidato.js');
+const Candidato = require('../models/candidato.js');
 
 //const Biblioteca = require('../models/biblioteca.js');
 
@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try{
-        const candidatos = await candidato.find().populate('Partido');
+        const candidatos = await Candidato.find().populate('Partido');
 
         return res.send({ candidatos })
     } catch (err) {
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 
 router.get('/estado/:estado', async (req, res)=>{
     try{
-        const candidatos = await candidato.find({estado: req.params.estado}).populate('Partido');
+        const candidatos = await Candidato.find({estado: req.params.estado}).populate('Partido');
         return res.send({ candidatos })
     } catch (err) {
         return res.status(400).send({ error: 'Erro ao achar candidato' });
@@ -29,7 +29,7 @@ router.get('/estado/:estado', async (req, res)=>{
 
 router.get('/numero/:numero', async (req, res)=>{
     try{
-        const candidatos = await candidato.find({numero: req.params.numero}).populate('Partido');
+        const candidatos = await Candidato.find({numero: req.params.numero}).populate('Partido');
         return res.send({ candidatos })
     } catch (err) {
         return res.status(400).send({ error: 'Erro ao achar candidato' });
@@ -44,11 +44,11 @@ router.post('/registrar', async (req, res) => {
        //const candidato = await candidato.create(req.body);
        const { nome, partidoCandidato, numero, cargo, estado, votos, imgId } = req.body;
 
-       if(await Usuario.findOne({ numero })){
+       /*if(await Candidato.findOne({ numero })){
             return res.status(400).send({error: 'Candidato already exists'});
-        }
+        }*/
 
-        const candidato = await candidato.create({nome, partidoCandidato, numero, cargo, estado, votos, imgId});
+        const candidato = await Candidato.create({nome, partidoCandidato, numero, cargo, estado, votos, imgId});
         
         /*if(partidoCandidato != null){
             await Promise.all(partidoCandidato.map(async end => {
@@ -73,7 +73,7 @@ router.post('/registrar', async (req, res) => {
 
 router.put('/atualizar/:candidatoId', async (req, res) => {
     try{
-        const candidato = await candidato.findByIdAndUpdate(req.params.candidatoId, req.body);
+        const candidato = await Candidato.findByIdAndUpdate(req.params.candidatoId, req.body);
     
         await candidato.save();
     
@@ -87,7 +87,7 @@ router.put('/atualizar/:candidatoId', async (req, res) => {
 router.delete('/apagar/:candidatoId', async (req, res) => {
     try{
        
-        await candidato.findByIdAndRemove(req.params.candidatoId)
+        await Candidato.findByIdAndRemove(req.params.candidatoId)
         return res.send({log: 'Deleted Succesfully'})
  
      } catch (err) {
