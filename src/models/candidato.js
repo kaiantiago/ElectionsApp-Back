@@ -1,5 +1,4 @@
 const mongoose = require('../database');
-const bcrypt = require('bcryptjs');
 
 const candidatoSchema = new mongoose.Schema({
     nome: {
@@ -7,11 +6,11 @@ const candidatoSchema = new mongoose.Schema({
         unique: true,
         require: true,
     },
-    partidoCandidato: [{
+    partidoCandidato: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Partido',
         require: true,
-    }],
+    },
     numero:{
         type: Number,
         unique: true,
@@ -43,9 +42,6 @@ const candidatoSchema = new mongoose.Schema({
 });
 
 candidatoSchema.pre('save', async function(next) {
-    const hash = await bcrypt.hash(this.senha, 10);
-    this.senha = hash;
-
     next();
 });
 

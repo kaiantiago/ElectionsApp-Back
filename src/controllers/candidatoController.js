@@ -10,17 +10,17 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try{
-        const candidatos = await Candidato.find().populate('Partido');
+        const candidatos = await Candidato.find().populate('partidoCandidato');;
 
         return res.send({ candidatos })
     } catch (err) {
-        return res.status(400).send({ error: 'Error loading' });
+        return res.status(400).send({ error: 'Error loading '+err });
     }
 });
 
 router.get('/estado/:estado', async (req, res)=>{
     try{
-        const candidatos = await Candidato.find({estado: req.params.estado}).populate('Partido');
+        const candidatos = await Candidato.find({estado: req.params.estado}).populate('partidoCandidato');
         return res.send({ candidatos })
     } catch (err) {
         return res.status(400).send({ error: 'Erro ao achar candidato' });
@@ -29,7 +29,7 @@ router.get('/estado/:estado', async (req, res)=>{
 
 router.get('/numero/:numero', async (req, res)=>{
     try{
-        const candidatos = await Candidato.find({numero: req.params.numero}).populate('Partido');
+        const candidatos = await Candidato.find({numero: req.params.numero}).populate('partidoCandidato');
         return res.send({ candidatos })
     } catch (err) {
         return res.status(400).send({ error: 'Erro ao achar candidato' });

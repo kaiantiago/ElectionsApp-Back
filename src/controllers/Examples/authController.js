@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
 const authConfig = require('../../config/auth.json')
@@ -35,7 +34,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/authenticate', async (req, res) => {
+/*router.post('/authenticate', async (req, res) => {
     const { email, password } = req.body;
 
     const user = await  User.findOne({email}).select('+password');
@@ -52,6 +51,6 @@ router.post('/authenticate', async (req, res) => {
         user, 
         token: generateToken({ id: user.id }) 
     });
-});
+});*/
 
 module.exports = app => app.use('/auth', router);

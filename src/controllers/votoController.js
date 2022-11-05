@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
 const authConfig = require('../config/auth.json')
@@ -104,8 +103,7 @@ router.post('/registrar', async (req, res) => {
 router.delete('/apagar/:votoId', async (req, res) => {
     try{
        
-       await Voto.findByIdAndRemove(req.params.votoId).populate('enderecoVoto')
-       await EnderecoVoto.findOneAndRemove({voto: req.params.votoId});
+       await Voto.findByIdAndRemove(req.params.votoId);
        return res.send({log: 'Deleted Succesfully'})
 
     } catch (err) {
