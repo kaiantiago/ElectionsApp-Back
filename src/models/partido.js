@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const partidoSchema = new mongoose.Schema({
     nome: {
         type: String,
+        unique: true,
         required: true,
     },
     CreatedAt: {

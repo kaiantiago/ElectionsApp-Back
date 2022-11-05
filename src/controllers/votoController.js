@@ -15,7 +15,17 @@ function generateToken(params = {}) {
 
 router.get('/:votoId', async (req, res)=>{
     try{
-        const voto = await Voto.findById(req.params.votoId);
+        const voto = await Voto.find(ById(req.params.votoId));
+
+        return res.send({ voto })
+    } catch (err) {
+        return res.status(400).send({ error: 'Error loading' });
+    }
+});
+
+router.get('/', async (req, res)=>{
+    try{
+        const voto = await Voto.find();
 
         return res.send({ voto })
     } catch (err) {
