@@ -86,8 +86,18 @@ router.put('/atualizar/:candidatoId', async (req, res) => {
 
 router.delete('/apagar/:candidatoId', async (req, res) => {
     try{
-       
         await Candidato.findByIdAndRemove(req.params.candidatoId)
+        return res.send({log: 'Deleted Succesfully'})
+ 
+     } catch (err) {
+         console.log(err);
+         return res.status(400).send({ error: 'Error deleting user' });
+     }
+});
+
+router.delete('/apagarTodos', async (req, res) => {
+    try{
+        await Candidato.deleteMany({})
         return res.send({log: 'Deleted Succesfully'})
  
      } catch (err) {

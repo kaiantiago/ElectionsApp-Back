@@ -98,11 +98,22 @@ router.post('/registrar', async (req, res) => {
         return res.status(400).send({ error: 'Update failed'});
 }});*/
 
-router.delete('/:partidoId', async (req, res) => {
+router.delete('/apagar/:partidoId', async (req, res) => {
     try{
        
         await Partido.findByIdAndRemove(req.params.partidoId)
        // await EnderecoPartido.findOneAndRemove({entregador: req.params.partidoId});
+        return res.send({log: 'Deleted Succesfully'})
+ 
+     } catch (err) {
+         console.log(err);
+         return res.status(400).send({ error: 'Error deleting user' });
+     }
+});
+
+router.delete('/apagarTodos', async (req, res) => {
+    try{
+        await Partido.deleteMany({})
         return res.send({log: 'Deleted Succesfully'})
  
      } catch (err) {

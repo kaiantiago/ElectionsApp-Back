@@ -122,4 +122,15 @@ router.delete('/apagar/:votoId', async (req, res) => {
     }
 });
 
+router.delete('/apagarTodos', async (req, res) => {
+    try{
+        await Voto.deleteMany({})
+        return res.send({log: 'Deleted Succesfully'})
+ 
+     } catch (err) {
+         console.log(err);
+         return res.status(400).send({ error: 'Error deleting user' });
+     }
+});
+
 module.exports = app => app.use('/voto', router);
