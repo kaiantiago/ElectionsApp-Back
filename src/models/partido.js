@@ -1,10 +1,14 @@
 const mongoose = require('../database');
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 
 const partidoSchema = new mongoose.Schema({
     nome: {
         type: String,
         unique: true,
+        required: true,
+    },
+    descricao: {
+        type: String,
         required: true,
     },
     CreatedAt: {
@@ -14,10 +18,7 @@ const partidoSchema = new mongoose.Schema({
 });
 
 partidoSchema.pre('save', async function(next) {
-    if(this.senha != undefined) {
-        const hash = await bcrypt.hash(this.senha, 10);
-        this.senha = hash;
-    }
+    
     next();
     
 });

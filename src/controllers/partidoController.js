@@ -37,13 +37,13 @@ router.post('/registrar', async (req, res) => {
     
     try{
     
-        const { nome } = req.body;
+        const { nome, descricao } = req.body;
         console.log(nome);
         if(await Partido.findOne({ nome })){
             return res.status(400).send({error: 'Item already exists'});
         }
     
-       const partido = await Partido.create({nome});
+       const partido = await Partido.create({nome, descricao});
        
        /*if(enderecoPartido != null){
             await Promise.all(enderecoPartido.map(async end =>{

@@ -73,10 +73,11 @@ router.post('/registrar', async (req, res) => {
 
 router.put('/atualizar/:candidatoId', async (req, res) => {
     try{
+        //console.log(req.body);
         const candidato = await Candidato.findByIdAndUpdate(req.params.candidatoId, req.body);
-    
+ 
         await candidato.save();
-    
+        
         return res.send( {result:'Update Succesful'});
     }
     catch (err) {
